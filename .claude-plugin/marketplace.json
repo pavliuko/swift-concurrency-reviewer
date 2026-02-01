@@ -1,0 +1,17 @@
+{
+  "name": "swift-concurrency-reviewer",
+  "owner": {
+    "name": "pavliuko"
+  },
+  "metadata": {
+    "description": "Swift concurrency code review plugin with tutor and reviewer modes"
+  },
+  "plugins": [
+    {
+      "name": "swift-concurrency-reviewer",
+      "source": "./",
+      "description": "Review Swift code for concurrency issues. Supports tutor and reviewer output modes.",
+      "version": "1.0.0"
+    }
+  ]
+}

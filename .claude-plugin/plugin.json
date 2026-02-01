@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Review Swift code for concurrency issues. Supports tutor and reviewer output modes.",
   "author": {
-    "name": "Your Name"
+    "name": "pavliuko"
   },
-  "repository": "https://github.com/yourname/swift-concurrency-reviewer",
+  "repository": "https://github.com/pavliuko/swift-concurrency-reviewer",
   "license": "MIT",
   "keywords": [
     "swift",

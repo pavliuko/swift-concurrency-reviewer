@@ -24,18 +24,22 @@ The plugin uses this skill as its source of truth for all concurrency analysis, 
 
 ## Installation
 
-### Option 1: Test Locally
+### Add the Marketplace
+
+```
+/plugin marketplace add pavliuko/swift-concurrency-reviewer
+```
+
+### Install the Plugin
+
+```
+/plugin install swift-concurrency-reviewer@swift-concurrency-reviewer
+```
+
+### Alternative: Test Locally
 
 ```bash
 claude --plugin-dir /path/to/swift-concurrency-reviewer
-```
-
-### Option 2: Install from Marketplace
-
-Once published to a marketplace:
-
-```
-/plugin install swift-concurrency-reviewer@your-marketplace
 ```
 
 ## Usage
