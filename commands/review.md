@@ -12,10 +12,15 @@ Run a comprehensive Swift concurrency review using specialized agent powered by 
 
 ## Review Workflow:
 
-1. **Check Prerequisites**
+1. **Dependency Check**
 
-   - Verify the `swift-concurrency` skill is available
-   - If not installed, report that and exit
+   Verify all required plugins are available:
+
+   - Check if the `swift-concurrency` skill/plugin is installed and accessible
+   - Record the result (plugin name, version if available, status)
+   - If the plugin is NOT available:
+     - Display an error message explaining the missing dependency
+     - Exit immediately
 
 2. **Identify Changed Files**
 
@@ -50,10 +55,16 @@ Run a comprehensive Swift concurrency review using specialized agent powered by 
 
 5. **Return Results**
 
-   The agent will return a formatted report based on the style:
+   The agent will return a formatted report. **Always start the output with the dependency status header:**
 
-   **Reviewer Mode**: Concise issue list with fixes
-   **Tutor Mode**: Educational explanations with learning resources
+   ```
+   ## Dependency Check
+   - swift-concurrency plugin: [Available|Not Available]
+
+   ---
+   ```
+
+   Then display the report from agent.
 
 ## Usage Examples:
 
