@@ -1,0 +1,19 @@
+{
+  "name": "swift-concurrency-reviewer",
+  "version": "1.0.0",
+  "description": "Review Swift code for concurrency issues. Supports tutor and reviewer output modes.",
+  "author": {
+    "name": "Your Name"
+  },
+  "repository": "https://github.com/yourname/swift-concurrency-reviewer",
+  "license": "MIT",
+  "keywords": [
+    "swift",
+    "concurrency",
+    "code-review",
+    "swift-6",
+    "sendable",
+    "actors",
+    "async-await"
+  ]
+}
