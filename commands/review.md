@@ -55,16 +55,25 @@ Run a comprehensive Swift concurrency review using specialized agent powered by 
 
 5. **Return Results**
 
-   The agent will return a formatted report. **Always start the output with the dependency status header:**
+   Format the output in the following order:
+
+   **a) Dependency Check**
 
    ```
-   ## Dependency Check
    - swift-concurrency plugin: [Available|Not Available]
-
-   ---
    ```
 
-   Then display the report from agent.
+   **b) Plugin Version**
+
+   ```
+   - swift-concurrency-reviewer: v[VERSION]
+   ```
+
+   To get `[VERSION]`: Read `.claude-plugin/plugin.json` from this plugin's directory and extract the `version` field.
+
+   **c) Review Report**
+
+   Display the formatted report from the review agent based on the selected style.
 
 ## Usage Examples:
 
