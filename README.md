@@ -47,7 +47,7 @@ claude --plugin-dir /path/to/swift-concurrency-reviewer
 ### Basic Usage
 
 ```
-/swift-concurrency-reviewer:review-concurrency
+/swift-concurrency-reviewer:review
 ```
 
 This runs in **tutor mode** with learning resources enabled (default).
@@ -57,7 +57,7 @@ This runs in **tutor mode** with learning resources enabled (default).
 Concise, professional output with issues and fixes only:
 
 ```
-/swift-concurrency-reviewer:review-concurrency --style=reviewer
+/swift-concurrency-reviewer:review --style=reviewer
 ```
 
 ### Tutor Mode
@@ -65,17 +65,17 @@ Concise, professional output with issues and fixes only:
 Educational explanations with learning resources:
 
 ```
-/swift-concurrency-reviewer:review-concurrency --style=tutor
+/swift-concurrency-reviewer:review --style=tutor
 ```
 
 ### Control Learning Resources
 
 ```
 # Tutor mode without learning links
-/swift-concurrency-reviewer:review-concurrency --style=tutor --no-learning
+/swift-concurrency-reviewer:review --style=tutor --no-learning
 
 # Reviewer mode with learning links
-/swift-concurrency-reviewer:review-concurrency --style=reviewer --include-learning
+/swift-concurrency-reviewer:review --style=reviewer --include-learning
 ```
 
 ## Output Modes
