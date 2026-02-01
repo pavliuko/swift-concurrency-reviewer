@@ -4,7 +4,17 @@ A Claude Code plugin for reviewing Swift code for concurrency issues. Supports t
 
 ## Prerequisites
 
-This plugin requires the **Swift Concurrency Agent Skill** to be installed:
+This plugin requires the [Swift Concurrency Agent Skill](https://github.com/AvdLee/Swift-Concurrency-Agent-Skill) by Antoine van der Lee.
+
+### Install the Swift Concurrency Skill
+
+**Step 1:** Add the marketplace
+
+```
+/plugin marketplace add AvdLee/Swift-Concurrency-Agent-Skill
+```
+
+**Step 2:** Install the skill
 
 ```
 /plugin install swift-concurrency@swift-concurrency-agent-skill
