@@ -57,16 +57,16 @@ Run a comprehensive Swift concurrency review using specialized agent powered by 
 
    Format the output in the following order:
 
-   **a) Dependency Check**
-
-   ```
-   - swift-concurrency plugin: [Available|Not Available]
-   ```
-
-   **b) Plugin Version**
+   **a) Version**
 
    ```
    - swift-concurrency-reviewer: v[VERSION]
+   ```
+
+   **b) Dependencies**
+
+   ```
+   - swift-concurrency plugin: [Available|Not Available]
    ```
 
    To get `[VERSION]`: Read `.claude-plugin/plugin.json` from this plugin's directory and extract the `version` field.
