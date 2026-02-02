@@ -1,12 +1,12 @@
 ---
-description: "Review Swift code for concurrency issues using the Swift Concurrency skill"
+description: "Review Swift PR for concurrency issues using the Swift Concurrency skill"
 argument-hint: "[--style=reviewer|tutor] [--include-learning|--no-learning]"
-allowed-tools: ["Bash", "Read", "Task"]
+allowed-tools: ["Bash", "Glob", "Grep", "Read", "Task"]
 ---
 
-# Swift Concurrency Code Review
+# Swift Concurrency PR Review
 
-Run a comprehensive Swift concurrency review using specialized agent powered by the `swift-concurrency` skill.
+Run a Swift concurrency review on a pull request using the specialized `review-agent` powered by the `swift-concurrency` skill.
 
 **Arguments:** "$ARGUMENTS"
 
@@ -28,12 +28,18 @@ Run a comprehensive Swift concurrency review using specialized agent powered by 
 
    - `--style=reviewer` - Concise, professional code review style (issues + fixes only)
    - `--style=tutor` - Educational style with explanations and learning resources (DEFAULT)
-   - `--include-learning` - Include learning URLs from mapping file
+   - `--include-learning` - Include learning URLs
    - `--no-learning` - Exclude learning URLs
 
-3. **Identify Changed Files**
+   **Defaults:**
+   - Style: `tutor`
+   - Learning: `--include-learning` for tutor mode, `--no-learning` for reviewer mode
 
-   - Run `git diff --name-only` to see modified Swift files
+3. **Determine Review Scope**
+
+   - Check if PR exists: `gh pr view --json number,headRefName,baseRefName`
+   - If no PR exists, report that and exit
+   - Get the PR's changed files: `gh pr diff --name-only`
    - Filter to only `.swift` files
    - If no Swift files changed, report that and exit
 
@@ -41,14 +47,10 @@ Run a comprehensive Swift concurrency review using specialized agent powered by 
 
    Construct the base URL for clickable file links:
    - Run `git remote get-url origin` to get the remote URL
-   - Run `git rev-parse --abbrev-ref HEAD` to get current branch
+   - Use the PR's head branch from step 3
    - Parse owner/repo from the remote URL
-   - Construct: `https://github.com/{owner}/{repo}/blob/{branch}/`
+   - Construct: `https://github.com/{owner}/{repo}/blob/{head_branch}/`
    - Store as `github_base` for passing to the agent
-
-   **Defaults:**
-   - Style: `tutor`
-   - Learning: `--include-learning` for tutor mode, `--no-learning` for reviewer mode
 
 5. **Launch Review Agent**
 
@@ -61,7 +63,6 @@ Run a comprehensive Swift concurrency review using specialized agent powered by 
            Include learning resources: [true|false]
            GitHub base URL: [github_base]
            Files: [list of changed Swift files]
-
    ```
 
 6. **Return Results**
@@ -90,36 +91,32 @@ Run a comprehensive Swift concurrency review using specialized agent powered by 
 
 **Default (tutor mode with learning resources):**
 ```
-/swift-concurrency-reviewer:review-concurrency
+/swift-concurrency-reviewer:review
 ```
 
 **Reviewer mode (concise, no learning links):**
 ```
-/swift-concurrency-reviewer:review-concurrency --style=reviewer
+/swift-concurrency-reviewer:review --style=reviewer
 ```
 
 **Tutor mode without learning links:**
 ```
-/swift-concurrency-reviewer:review-concurrency --style=tutor --no-learning
+/swift-concurrency-reviewer:review --style=tutor --no-learning
 ```
 
 **Reviewer mode with learning links:**
 ```
-/swift-concurrency-reviewer:review-concurrency --style=reviewer --include-learning
+/swift-concurrency-reviewer:review --style=reviewer --include-learning
 ```
 
 ## Prerequisites:
 
 - The `swift-concurrency` plugin must be installed
-
-## Tips:
-
-- **Run before commits**: Catch concurrency issues early
-- **Use tutor mode**: When learning or onboarding team members
-- **Use reviewer mode**: For quick checks during active development
+- A pull request must exist for the current branch
 
 ## Notes:
 
 - The agent uses the Swift Concurrency skill as its source of truth
 - All recommendations follow the skill's decision tree and patterns
 - Learning URLs are fetched directly from https://fuckingapproachableswiftconcurrency.com/en/
+- Reviews only files changed in the PR, not the entire codebase
