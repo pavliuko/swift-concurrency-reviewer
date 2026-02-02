@@ -1,6 +1,6 @@
 # Swift Concurrency Reviewer
 
-A Claude Code plugin for reviewing Swift code for concurrency issues. Supports two output modes: **tutor** (educational with explanations) and **reviewer** (concise issues + fixes).
+A Claude Code plugin for reviewing Swift PRs for concurrency issues. Supports two output modes: **tutor** (educational with explanations) and **reviewer** (concise issues + fixes).
 
 ## Prerequisites
 
@@ -47,7 +47,7 @@ claude --plugin-dir /path/to/swift-concurrency-reviewer
 ### Basic Usage
 
 ```
-/swift-concurrency-reviewer:review
+/swift-concurrency-reviewer:pr-review
 ```
 
 This runs in **tutor mode** with learning resources enabled (default).
@@ -57,7 +57,7 @@ This runs in **tutor mode** with learning resources enabled (default).
 Concise, professional output with issues and fixes only:
 
 ```
-/swift-concurrency-reviewer:review --style=reviewer
+/swift-concurrency-reviewer:pr-review --style=reviewer
 ```
 
 ### Tutor Mode
@@ -65,17 +65,17 @@ Concise, professional output with issues and fixes only:
 Educational explanations with learning resources:
 
 ```
-/swift-concurrency-reviewer:review --style=tutor
+/swift-concurrency-reviewer:pr-review --style=tutor
 ```
 
 ### Control Learning Resources
 
 ```
 # Tutor mode without learning links
-/swift-concurrency-reviewer:review --style=tutor --no-learning
+/swift-concurrency-reviewer:pr-review --style=tutor --no-learning
 
 # Reviewer mode with learning links
-/swift-concurrency-reviewer:review --style=reviewer --include-learning
+/swift-concurrency-reviewer:pr-review --style=reviewer --include-learning
 ```
 
 ## Output Modes
@@ -122,8 +122,8 @@ conform to Sendable, which could lead to data races...
 
 ## How It Works
 
-1. **Command** (`/review-concurrency`) checks prerequisites and identifies changed Swift files
-2. **Agent** (`swift-concurrency-reviewer`) coordinates the review process
+1. **Command** (`/pr-review`) checks prerequisites and identifies Swift files changed in the PR
+2. **Agent** (`review-agent`) coordinates the review process
 3. **Skill** (`swift-concurrency`) performs the actual analysis using its decision trees and patterns
 4. Results are formatted according to the selected output mode
 
@@ -131,9 +131,9 @@ The agent never analyzes concurrency on its own — it delegates everything to t
 
 ## Tips
 
-- **Run before commits**: Catch concurrency issues early
+- **Run before merging**: Catch concurrency issues before they land in main
 - **Use tutor mode**: When learning Swift concurrency or onboarding team members
-- **Use reviewer mode**: For quick checks during active development
+- **Use reviewer mode**: For quick PR checks during active development
 - **Check prerequisites**: Ensure the `swift-concurrency` skill is installed
 
 ## Credits
