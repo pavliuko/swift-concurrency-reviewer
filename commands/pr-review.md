@@ -87,28 +87,6 @@ Run a Swift concurrency review on a pull request using the specialized `review-a
 
    Display the formatted report from the review agent.
 
-## Usage Examples:
-
-**Default (tutor mode with learning resources):**
-```
-/swift-concurrency-reviewer:review
-```
-
-**Reviewer mode (concise, no learning links):**
-```
-/swift-concurrency-reviewer:review --style=reviewer
-```
-
-**Tutor mode without learning links:**
-```
-/swift-concurrency-reviewer:review --style=tutor --no-learning
-```
-
-**Reviewer mode with learning links:**
-```
-/swift-concurrency-reviewer:review --style=reviewer --include-learning
-```
-
 ## Prerequisites:
 
 - The `swift-concurrency` plugin must be installed
