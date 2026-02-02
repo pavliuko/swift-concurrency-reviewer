@@ -34,10 +34,9 @@ Skill tool: swift-concurrency
 1. **Parse the prompt** to determine:
    - **Style**: `reviewer` (concise) or `tutor` (educational) - default: `tutor`
    - **Include Learning**: whether to include URLs from mapping file - default: true for tutor, false for reviewer
+   - **Files**: list of Swift files to review
 
-2. **Identify changed files** by running `git diff --name-only`, filter to `.swift` files. If no Swift files changed, report that and exit.
-
-3. **Detect `{github_base}`** for clickable file links by running `git remote get-url origin` and `git rev-parse --abbrev-ref HEAD`, then construct `https://github.com/{owner}/{repo}/blob/{branch}/`.
+2. **Detect `{github_base}`** for clickable file links by running `git remote get-url origin` and `git rev-parse --abbrev-ref HEAD`, then construct `https://github.com/{owner}/{repo}/blob/{branch}/`.
 
 ## Output Formats
 
