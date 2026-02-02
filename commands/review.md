@@ -52,10 +52,10 @@ Run a comprehensive Swift concurrency review using specialized agent powered by 
 
 5. **Launch Review Agent**
 
-   Launch the `swift-concurrency-reviewer` agent with the parsed configuration:
+   Launch the `swift-concurrency-reviewer:review-agent` agent with the parsed configuration:
 
    ```
-   Task tool with subagent_type: swift-concurrency-reviewer
+   Task tool with subagent_type: swift-concurrency-reviewer:review-agent
    Prompt: Review the following Swift files for concurrency issues.
            Style: [reviewer|tutor]
            Include learning resources: [true|false]
