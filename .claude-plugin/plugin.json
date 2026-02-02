@@ -1,6 +1,6 @@
 {
   "name": "swift-concurrency-reviewer",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Review Swift code for concurrency issues. Supports tutor and reviewer output modes.",
   "author": {
     "name": "pavliuko"
