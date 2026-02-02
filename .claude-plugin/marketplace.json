@@ -11,7 +11,7 @@
       "name": "swift-concurrency-reviewer",
       "source": "./",
       "description": "Review Swift code for concurrency issues. Supports tutor and reviewer output modes.",
-      "version": "1.3.0"
+      "version": "1.3.1"
     }
   ]
 }
