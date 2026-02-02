@@ -65,7 +65,78 @@ Run a Swift concurrency review on a pull request using the specialized `review-a
            Files: [list of changed Swift files]
    ```
 
-   **Output handling:** The agent's output IS the final output. Do NOT add any summary, introduction, or commentary. Simply pass through the agent's response directly to the user.
+6. **Format Final Output**
+
+   The agent returns JSON with this structure:
+   ```json
+   {
+     "total_issues": N,
+     "issues": [{ "file", "lines", "category", "severity", "problem", "code", "fix", "explanation", "learn_url" }]
+   }
+   ```
+
+   Parse the JSON and format output based on style. This is the ONLY output shown to the user.
+
+   ### If no issues found:
+   ```markdown
+   ## Swift Concurrency Review ✓
+
+   No concurrency issues found in the changed Swift files.
+
+   **Files reviewed:**
+   - [list of files]
+   ```
+
+   ### Reviewer Mode (--style=reviewer):
+   ````markdown
+   ## Swift Concurrency Issues Found: N
+
+   ### Issue 1: [Category]
+   **File:** [`file.swift:lines`]({github_base}path/to/file.swift#L{start}-L{end})
+   **Severity:** [High/Medium/Low]
+   **Problem:** [problem]
+   **Fix:**
+   ```swift
+   [fix code]
+   ```
+
+   ---
+
+   [repeat for each issue]
+   ````
+
+   ### Tutor Mode (--style=tutor):
+   ````markdown
+   ## Swift Concurrency Review
+
+   Found N issues. Let's understand each one:
+
+   ---
+
+   ### Issue 1: [Category]
+
+   **File:** [`file.swift:lines`]({github_base}path/to/file.swift#L{start}-L{end})
+   **Severity:** [High/Medium/Low]
+
+   **Current code:**
+   ```swift
+   [problematic code]
+   ```
+
+   **Why this is a problem:**
+   [explanation]
+
+   **Suggested fix:**
+   ```swift
+   [fix code]
+   ```
+
+   **Learn more:** [learn_url]
+
+   ---
+
+   [repeat for each issue]
+   ````
 
 ## Prerequisites:
 

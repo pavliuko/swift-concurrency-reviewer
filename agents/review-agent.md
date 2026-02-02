@@ -37,74 +37,57 @@ Skill tool: swift-concurrency
    - **Files**: list of Swift files to review.
    - **GitHub base URL**: extract `{github_base}` from the prompt. If not provided, use empty string
 
-## Output Formats
+## Output
 
-### Reviewer Mode (--style=reviewer)
+Return findings as JSON. Do NOT format for user display — the calling command handles formatting.
 
-Concise, actionable format:
-
-```markdown
-## Swift Concurrency Issues Found: N
-
-### Issue 1: [Category]
-**File:** [`file.swift:42-45`]({github_base}path/to/file.swift#L42-L45)
-**Problem:** [One sentence describing the issue]
-**Fix:** [Code snippet or instruction]
-**Skill Reference:** [Which reference file applies: sendable.md, actors.md, etc.]
+```json
+{
+  "total_issues": 2,
+  "issues": [
+    {
+      "file": "Sources/API/Client.swift",
+      "lines": "42-45",
+      "category": "Sendable Violation",
+      "severity": "High",
+      "problem": "Non-Sendable type crosses actor boundary",
+      "code": "class Client { ... }",
+      "fix": "extension Client: @unchecked Sendable {}",
+      "explanation": "The type is passed across an actor isolation boundary but doesn't conform to Sendable, which could lead to data races.",
+      "learn_url": "https://fuckingapproachableswiftconcurrency.com/en/#sendable"
+    }
+  ]
+}
 ```
 
-### Tutor Mode (--style=tutor) [DEFAULT]
+Fields:
+- **issues[].file**: path to file
+- **issues[].lines**: line range (e.g., "42-45")
+- **issues[].category**: issue category (e.g., "Data Race", "Actor Isolation", "Sendable Violation")
+- **issues[].severity**: High, Medium, or Low
+- **issues[].problem**: one-sentence description
+- **issues[].code**: the problematic code snippet
+- **issues[].fix**: corrected code snippet
+- **issues[].explanation**: 2-3 sentences (include for tutor mode)
+- **issues[].learn_url**: URL (include if `--include-learning`)
+- **total_issues**: count of issues found
 
-Educational format with explanations:
-````markdown
-## Swift Concurrency Review
+## Learning Resources
 
-Found N issues. Let's understand each one:
+If `--include-learning` is enabled, **call the `swift-concurrency` skill tool** to map each issue to a learning resource URL:
 
----
+- Protecting shared state with actors? → `#execution`
+- Managing async work with TaskGroup? → `#tasks`
+- Type crossing isolation boundaries? → `#sendable`
+- Isolation inheritance patterns? → `#isolation-inheritance`
+- Common anti-pattern or mistake? → `#mistakes`
+- Basic async/await usage? → `#async-await`
 
-### Issue 1: [Category]
-
-**File:** [`file.swift:42-45`]({github_base}path/to/file.swift#L42-L45)
-
-**Current code:**
-```swift
-[problematic code block]
-```
-
-**Why this is a problem:**
-[2-3 sentences explaining the concurrency issue]
-
-**Suggested fix:**
-```swift
-[corrected code following skill's recommended patterns]
-```
-
-**Skill guidance:** [Brief note on which part of the skill applies]
-
-**Learn more:** [URL if --include-learning]
-
----
-````
-
-## Learning Resources Integration
-
-For each issue found, **call the `swift-concurrency` skill tool** to determine which section of the learning resource best helps the developer **understand the fix**:
-
-1. The skill reads the page at `https://fuckingapproachableswiftconcurrency.com/en/`
-2. The skill matches each issue to the most relevant section:
-   - Protecting shared state with actors? → `#execution`
-   - Managing async work with TaskGroup? → `#tasks`
-   - Type crossing isolation boundaries? → `#sendable`
-   - Isolation inheritance patterns? → `#isolation-inheritance`
-   - Common anti-pattern or mistake? → `#mistakes`
-   - Basic async/await usage? → `#async-await`
-   - etc
-3. The skill returns the appropriate section URL (e.g., `https://fuckingapproachableswiftconcurrency.com/en/#execution`)
+Base URL: `https://fuckingapproachableswiftconcurrency.com/en/`
 
 ## Workflow
 
 1. **Call the `swift-concurrency` skill tool** to perform the review. If the skill is not found, report that and exit
-2. If no issues found, report that the code looks good and exit
-3. If `--include-learning` is enabled, follow #learning-resources-integration to map each issue to a learning resource URL
-4. **Format the skill's findings** according to the chosen output mode
+2. For each file, collect issues or mark as clean
+3. If `--include-learning` is enabled, map each issue to a learning resource URL
+4. Return the JSON output
