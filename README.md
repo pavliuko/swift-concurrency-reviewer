@@ -82,19 +82,22 @@ Educational explanations with learning resources:
 
 ### Reviewer Mode
 
-```markdown
+````markdown
 ## Swift Concurrency Issues Found: 3
 
 ### Issue 1: Sendable Violation
-**File:** Sources/API/Client.swift:L42-L45
+**File:** [`Client.swift:42-45`](https://github.com/owner/repo/blob/branch/Sources/API/Client.swift#L42-L45)
+**Severity:** High
 **Problem:** Non-Sendable type crosses actor boundary
-**Fix:** Add `@unchecked Sendable` with documented safety invariant
-**Skill Reference:** sendable.md
+**Fix:**
+```swift
+extension Client: @unchecked Sendable {}
 ```
+````
 
 ### Tutor Mode
 
-```markdown
+````markdown
 ## Swift Concurrency Review
 
 Found 3 issues. Let's understand each one:
@@ -103,31 +106,35 @@ Found 3 issues. Let's understand each one:
 
 ### Issue 1: Sendable Violation
 
-**Location:** Sources/API/Client.swift (lines 42-45)
+**File:** [`Client.swift:42-45`](https://github.com/owner/repo/blob/branch/Sources/API/Client.swift#L42-L45)
+**Severity:** High
 
 **Current code:**
-[code block]
+```swift
+class Client {
+    func fetch() async { ... }
+}
+```
 
 **Why this is a problem:**
 The type is passed across an actor isolation boundary but doesn't
-conform to Sendable, which could lead to data races...
+conform to Sendable, which could lead to data races.
 
 **Suggested fix:**
-[corrected code]
-
-**Skill guidance:** See sendable.md for conformance patterns
+```swift
+extension Client: @unchecked Sendable {}
+```
 
 **Learn more:** https://fuckingapproachableswiftconcurrency.com/en/#sendable
-```
+````
 
 ## How It Works
 
-1. **Command** (`/pr-review`) checks prerequisites and identifies Swift files changed in the PR
-2. **Agent** (`review-agent`) coordinates the review process
+1. **Command** (`/pr-review`) checks prerequisites, identifies Swift files changed in the PR, and formats the final output
+2. **Agent** (`review-agent`) coordinates the review and returns structured JSON findings
 3. **Skill** (`swift-concurrency`) performs the actual analysis using its decision trees and patterns
-4. Results are formatted according to the selected output mode
 
-The agent never analyzes concurrency on its own — it delegates everything to the skill to ensure consistent, accurate recommendations based on the skill's comprehensive knowledge base.
+The agent never analyzes concurrency on its own — it delegates everything to the skill to ensure consistent, accurate recommendations.
 
 ## Tips
 
