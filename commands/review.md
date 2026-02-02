@@ -22,13 +22,7 @@ Run a comprehensive Swift concurrency review using specialized agent powered by 
      - Display an error message explaining the missing dependency
      - Exit immediately
 
-2. **Identify Changed Files**
-
-   - Run `git diff --name-only` to see modified Swift files
-   - Filter to only `.swift` files
-   - If no Swift files changed, report that and exit
-
-3. **Parse Arguments**
+2. **Parse Arguments**
 
    Parse the provided arguments to determine review mode:
 
@@ -41,7 +35,7 @@ Run a comprehensive Swift concurrency review using specialized agent powered by 
    - Style: `tutor`
    - Learning: `--include-learning` for tutor mode, `--no-learning` for reviewer mode
 
-4. **Launch Review Agent**
+3. **Launch Review Agent**
 
    Launch the `swift-concurrency-reviewer` agent with the parsed configuration:
 
@@ -50,10 +44,9 @@ Run a comprehensive Swift concurrency review using specialized agent powered by 
    Prompt: Review the following Swift files for concurrency issues.
            Style: [reviewer|tutor]
            Include learning resources: [true|false]
-           Files: [list of changed Swift files]
    ```
 
-5. **Return Results**
+4. **Return Results**
 
    Format the output in the following order:
 

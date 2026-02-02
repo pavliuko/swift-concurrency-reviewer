@@ -29,13 +29,15 @@ Skill tool: swift-concurrency
 3. **ALWAYS** invoke the skill BEFORE producing any concurrency-related output
 4. If the skill doesn't cover a specific scenario, state that explicitly rather than improvising
 
-## Review Scope
+## Setup
 
-Parse the prompt to determine:
+1. **Parse the prompt** to determine:
+   - **Style**: `reviewer` (concise) or `tutor` (educational) - default: `tutor`
+   - **Include Learning**: whether to include URLs from mapping file - default: true for tutor, false for reviewer
 
-1. **Style**: `reviewer` (concise) or `tutor` (educational) - default: `tutor`
-2. **Include Learning**: whether to include URLs from mapping file - default: true for tutor, false for reviewer
-3. **Files**: list of Swift files to review
+2. **Identify changed files** by running `git diff --name-only`, filter to `.swift` files. If no Swift files changed, report that and exit.
+
+3. **Detect `{github_base}`** for clickable file links by running `git remote get-url origin` and `git rev-parse --abbrev-ref HEAD`, then construct `https://github.com/{owner}/{repo}/blob/{branch}/`.
 
 ## Output Formats
 
@@ -47,7 +49,7 @@ Concise, actionable format:
 ## Swift Concurrency Issues Found: N
 
 ### Issue 1: [Category]
-**File:** path/to/file.swift:L42-L45
+**File:** [`file.swift:42-45`]({github_base}path/to/file.swift#L42-L45)
 **Problem:** [One sentence describing the issue]
 **Fix:** [Code snippet or instruction]
 **Skill Reference:** [Which reference file applies: sendable.md, actors.md, etc.]
@@ -65,7 +67,7 @@ Found N issues. Let's understand each one:
 
 ### Issue 1: [Category]
 
-**Location:** path/to/file.swift (lines 42-45)
+**File:** [`file.swift:42-45`]({github_base}path/to/file.swift#L42-L45)
 
 **Current code:**
 ```swift
