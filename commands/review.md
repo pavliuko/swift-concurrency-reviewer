@@ -1,7 +1,7 @@
 ---
 description: "Review Swift code for concurrency issues using the Swift Concurrency skill"
 argument-hint: "[--style=reviewer|tutor] [--include-learning|--no-learning]"
-allowed-tools: ["Bash", "Glob", "Grep", "Read", "Task", "Skill", "WebFetch"]
+allowed-tools: ["Bash", "Read", "Task"]
 ---
 
 # Swift Concurrency Code Review
