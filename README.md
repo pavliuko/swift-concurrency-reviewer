@@ -78,56 +78,6 @@ Educational explanations with learning resources:
 /swift-concurrency-reviewer:pr-review --style=reviewer --include-learning
 ```
 
-## Output Modes
-
-### Reviewer Mode
-
-````markdown
-## Swift Concurrency Issues Found: 3
-
-### Issue 1: Sendable Violation
-**File:** [`Client.swift:42-45`](https://github.com/owner/repo/blob/branch/Sources/API/Client.swift#L42-L45)
-**Severity:** High
-**Problem:** Non-Sendable type crosses actor boundary
-**Fix:**
-```swift
-extension Client: @unchecked Sendable {}
-```
-````
-
-### Tutor Mode
-
-````markdown
-## Swift Concurrency Review
-
-Found 3 issues. Let's understand each one:
-
----
-
-### Issue 1: Sendable Violation
-
-**File:** [`Client.swift:42-45`](https://github.com/owner/repo/blob/branch/Sources/API/Client.swift#L42-L45)
-**Severity:** High
-
-**Current code:**
-```swift
-class Client {
-    func fetch() async { ... }
-}
-```
-
-**Why this is a problem:**
-The type is passed across an actor isolation boundary but doesn't
-conform to Sendable, which could lead to data races.
-
-**Suggested fix:**
-```swift
-extension Client: @unchecked Sendable {}
-```
-
-**Learn more:** https://fuckingapproachableswiftconcurrency.com/en/#sendable
-````
-
 ## How It Works
 
 1. **Command** (`/pr-review`) checks prerequisites, identifies Swift files changed in the PR, and formats the final output

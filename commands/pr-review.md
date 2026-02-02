@@ -131,7 +131,7 @@ Run a Swift concurrency review on a pull request using the specialized `review-a
    [fix code]
    ```
 
-   **Learn more:** [learn_url]
+   **Learn more:** [{category}]({learn_url})
 
    ---
 
