@@ -32,10 +32,10 @@ Skill tool: swift-concurrency
 ## Setup
 
 1. **Parse the prompt** to determine:
-   - **Style**: `reviewer` (concise) or `tutor` (educational) - default: `tutor`
-   - **Include Learning**: whether to include URLs from mapping file - default: true for tutor, false for reviewer
-   - **Files**: list of Swift files to review
-   - **Extract `{github_base}`** from the prompt for clickable file links.
+   - **Style**: `reviewer` (concise) or `tutor` (educational). If not provided, use `tutor`
+   - **Include Learning**: whether to include URLs from mapping file. If not provided, use true for tutor, false for reviewer
+   - **Files**: list of Swift files to review.
+   - **GitHub base URL**: extract `{github_base}` from the prompt. If not provided, use empty string
 
 ## Output Formats
 
