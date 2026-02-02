@@ -65,6 +65,8 @@ Run a Swift concurrency review on a pull request using the specialized `review-a
            Files: [list of changed Swift files]
    ```
 
+   **Output handling:** The agent's output IS the final output. Do NOT add any summary, introduction, or commentary. Simply pass through the agent's response directly to the user.
+
 ## Prerequisites:
 
 - The `swift-concurrency` plugin must be installed
