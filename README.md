@@ -87,7 +87,6 @@ Educational explanations with learning resources:
 
 ### Issue 1: Sendable Violation
 **File:** Sources/API/Client.swift:L42-L45
-**Confidence:** 85
 **Problem:** Non-Sendable type crosses actor boundary
 **Fix:** Add `@unchecked Sendable` with documented safety invariant
 **Skill Reference:** sendable.md
@@ -105,7 +104,6 @@ Found 3 issues. Let's understand each one:
 ### Issue 1: Sendable Violation
 
 **Location:** Sources/API/Client.swift (lines 42-45)
-**Confidence:** 85
 
 **Current code:**
 [code block]

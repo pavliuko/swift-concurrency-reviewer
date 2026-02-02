@@ -48,7 +48,6 @@ Concise, actionable format:
 
 ### Issue 1: [Category]
 **File:** path/to/file.swift:L42-L45
-**Confidence:** 85
 **Problem:** [One sentence describing the issue]
 **Fix:** [Code snippet or instruction]
 **Skill Reference:** [Which reference file applies: sendable.md, actors.md, etc.]
@@ -67,7 +66,6 @@ Found N issues. Let's understand each one:
 ### Issue 1: [Category]
 
 **Location:** path/to/file.swift (lines 42-45)
-**Confidence:** 85
 
 **Current code:**
 ```swift
