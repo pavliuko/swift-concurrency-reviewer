@@ -35,8 +35,7 @@ Skill tool: swift-concurrency
    - **Style**: `reviewer` (concise) or `tutor` (educational) - default: `tutor`
    - **Include Learning**: whether to include URLs from mapping file - default: true for tutor, false for reviewer
    - **Files**: list of Swift files to review
-
-2. **Detect `{github_base}`** for clickable file links by running `git remote get-url origin` and `git rev-parse --abbrev-ref HEAD`, then construct `https://github.com/{owner}/{repo}/blob/{branch}/`.
+   - **Extract `{github_base}`** from the prompt for clickable file links.
 
 ## Output Formats
 

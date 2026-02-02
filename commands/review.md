@@ -22,13 +22,7 @@ Run a comprehensive Swift concurrency review using specialized agent powered by 
      - Display an error message explaining the missing dependency
      - Exit immediately
 
-2. **Identify Changed Files**
-
-   - Run `git diff --name-only` to see modified Swift files
-   - Filter to only `.swift` files
-   - If no Swift files changed, report that and exit
-
-3. **Parse Arguments**
+2. **Parse Arguments**
 
    Parse the provided arguments to determine review mode:
 
@@ -37,11 +31,26 @@ Run a comprehensive Swift concurrency review using specialized agent powered by 
    - `--include-learning` - Include learning URLs from mapping file
    - `--no-learning` - Exclude learning URLs
 
+3. **Identify Changed Files**
+
+   - Run `git diff --name-only` to see modified Swift files
+   - Filter to only `.swift` files
+   - If no Swift files changed, report that and exit
+
+4. **Detect GitHub Base URL**
+
+   Construct the base URL for clickable file links:
+   - Run `git remote get-url origin` to get the remote URL
+   - Run `git rev-parse --abbrev-ref HEAD` to get current branch
+   - Parse owner/repo from the remote URL
+   - Construct: `https://github.com/{owner}/{repo}/blob/{branch}/`
+   - Store as `github_base` for passing to the agent
+
    **Defaults:**
    - Style: `tutor`
    - Learning: `--include-learning` for tutor mode, `--no-learning` for reviewer mode
 
-4. **Launch Review Agent**
+5. **Launch Review Agent**
 
    Launch the `swift-concurrency-reviewer` agent with the parsed configuration:
 
@@ -50,31 +59,32 @@ Run a comprehensive Swift concurrency review using specialized agent powered by 
    Prompt: Review the following Swift files for concurrency issues.
            Style: [reviewer|tutor]
            Include learning resources: [true|false]
+           GitHub base URL: [github_base]
            Files: [list of changed Swift files]
 
    ```
 
-5. **Return Results**
+6. **Return Results**
 
    Format the output in the following order:
 
    **a) Version**
 
    ```
-   - swift-concurrency-reviewer: v[VERSION]
-   ```
-
-   **b) Dependencies**
-
-   ```
-   - swift-concurrency plugin: [Available|Not Available]
+   swift-concurrency-reviewer: v[VERSION]
    ```
 
    To get `[VERSION]`: Read `.claude-plugin/plugin.json` from this plugin's directory and extract the `version` field.
 
+   **b) Dependencies**
+
+   ```
+   swift-concurrency plugin: [Available|Not Available]
+   ```
+
    **c) Review Report**
 
-   Display the formatted report from the review agent based on the selected style.
+   Display the formatted report from the review agent.
 
 ## Usage Examples:
 
