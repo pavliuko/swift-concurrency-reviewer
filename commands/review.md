@@ -41,7 +41,7 @@ Run a comprehensive Swift concurrency review using specialized agent powered by 
 
    ```
    Task tool with subagent_type: swift-concurrency-reviewer
-   Prompt: Review the following Swift files for concurrency issues.
+   Prompt: Review Swift code for concurrency issues.
            Style: [reviewer|tutor]
            Include learning resources: [true|false]
    ```
