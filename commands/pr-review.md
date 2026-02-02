@@ -65,28 +65,6 @@ Run a Swift concurrency review on a pull request using the specialized `review-a
            Files: [list of changed Swift files]
    ```
 
-6. **Return Results**
-
-   Format the output in the following order:
-
-   **a) Version**
-
-   ```
-   swift-concurrency-reviewer: v[VERSION]
-   ```
-
-   To get `[VERSION]`: Read `.claude-plugin/plugin.json` from this plugin's directory and extract the `version` field.
-
-   **b) Dependencies**
-
-   ```
-   swift-concurrency plugin: [Available|Not Available]
-   ```
-
-   **c) Review Report**
-
-   Display the formatted report from the review agent.
-
 ## Prerequisites:
 
 - The `swift-concurrency` plugin must be installed
