@@ -13,7 +13,7 @@
       "name": "swift-concurrency-reviewer",
       "source": "./",
       "description": "Review Swift code for concurrency issues. Supports tutor and reviewer output modes.",
-      "version": "1.4.2",
+      "version": "1.5.0",
       "author": {
         "name": "pavliuko",
         "email": "pavliuk.aleksandr@gmail.com"
