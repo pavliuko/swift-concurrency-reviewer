@@ -1,7 +1,9 @@
 {
   "name": "swift-concurrency-reviewer",
+  "version": "1.0.0",
   "owner": {
-    "name": "pavliuko"
+    "name": "pavliuko",
+    "email": "pavliuk.aleksandr@gmail.com"
   },
   "metadata": {
     "description": "Swift concurrency code review plugin with tutor and reviewer modes"
@@ -11,7 +13,23 @@
       "name": "swift-concurrency-reviewer",
       "source": "./",
       "description": "Review Swift code for concurrency issues. Supports tutor and reviewer output modes.",
-      "version": "1.4.2"
+      "version": "1.4.2",
+      "author": {
+        "name": "pavliuko",
+        "email": "pavliuk.aleksandr@gmail.com"
+      },
+      "repository": "https://github.com/pavliuko/swift-concurrency-reviewer",
+      "license": "MIT",
+      "keywords": [
+        "swift",
+        "concurrency",
+        "code-review",
+        "swift-6",
+        "sendable",
+        "actors",
+        "async-await"
+      ],
+      "category": "development"
     }
   ]
 }
