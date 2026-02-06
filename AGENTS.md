@@ -2,12 +2,9 @@
 
 Swift Concurrency Reviewer is a Claude Code plugin that reviews Swift code for concurrency issues.
 
-## Process
-
-- Commits: Conventional Commits (feat|fix|refactor|build|ci|chore|docs|style|perf|test).
-
 ## Git
 
+- Commits: Conventional Commits (feat|fix|refactor|build|ci|chore|docs|style|perf|test).
 - Safe by default: `git status/diff/log`. Push only when user asks.
 - Branch changes require user consent.
 - Don't commit, and push; stop + ask.
