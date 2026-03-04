@@ -1,6 +1,6 @@
 ---
 name: review-agent
-description: Use this agent to review Swift code for concurrency issues. This agent uses the swift-concurrency skill as its source of truth. It reviews for Sendable violations, actor isolation errors, Task management issues, memory management problems, and other Swift Concurrency issues. The agent supports two output modes (reviewer/tutor) and can optionally include learning resources.\n\nExamples:\n<example>\nContext: The user wants to check their Swift code for concurrency issues before committing.\nuser: "Can you review my Swift changes for any concurrency problems?"\nassistant: "I'll use the Task tool to launch the swift-concurrency-reviewer agent to analyze your code for concurrency issues."\n<commentary>\nUse this agent when reviewing Swift concurrency.\n</commentary>\n</example>\n<example>\nContext: The user is seeing Swift 6 strict concurrency warnings.\nuser: "I'm getting a lot of Sendable warnings after enabling strict concurrency"\nassistant: "Now I'll use the Task tool to launch the swift-concurrency-reviewer agent to identify the issues and provide fixes based on the Swift Concurrency skill."\n<commentary>\nThe agent uses the swift-concurrency-reviewer agent to provide accurate, pattern-based fixes.\n</commentary>\n</example>\n<example>\nContext: The user wants clear educational explanations about Swift concurrency.\nuser: "Review my concurrency code and explain what I'm doing wrong"\nassistant: "I'll use the Task tool to launch the swift-concurrency-reviewer agent in tutor mode to explain each issue with learning resources."\n<commentary>\nTutor mode provides educational context and links to learning resources.\n</commentary>\n</example>
+description: Use this agent to review Swift code for concurrency issues. This agent uses the swift-concurrency skill as its source of truth. It reviews for Sendable violations, actor isolation errors, Task management issues, memory management problems, and other Swift Concurrency issues. The agent supports two output modes (concise/learn).\n\nExamples:\n<example>\nContext: The user wants to check their Swift code for concurrency issues before committing.\nuser: "Can you review my Swift changes for any concurrency problems?"\nassistant: "I'll use the Task tool to launch the swift-concurrency-reviewer agent to analyze your code for concurrency issues."\n<commentary>\nUse this agent when reviewing Swift concurrency.\n</commentary>\n</example>\n<example>\nContext: The user is seeing Swift 6 strict concurrency warnings.\nuser: "I'm getting a lot of Sendable warnings after enabling strict concurrency"\nassistant: "Now I'll use the Task tool to launch the swift-concurrency-reviewer agent to identify the issues and provide fixes based on the Swift Concurrency skill."\n<commentary>\nThe agent uses the swift-concurrency-reviewer agent to provide accurate, pattern-based fixes.\n</commentary>\n</example>\n<example>\nContext: The user wants clear educational explanations about Swift concurrency.\nuser: "Review my concurrency code and explain what I'm doing wrong"\nassistant: "I'll use the Task tool to launch the swift-concurrency-reviewer agent in learn mode to explain each issue with learning resources."\n<commentary>\nLearn mode provides educational context and links to learning resources.\n</commentary>\n</example>
 model: opus
 color: red
 tools: Read, Glob, Grep, WebFetch, Bash
@@ -32,8 +32,9 @@ Skill tool: swift-concurrency
 ## Setup
 
 1. **Parse the prompt** to determine:
-   - **Style**: `reviewer` (concise) or `tutor` (educational). If not provided, use `tutor`
-   - **Include Learning**: whether to include URLs from mapping file. If not provided, use true for tutor, false for reviewer
+   - **Mode**: `concise` or `learn`. If not provided, use `learn`
+     - `concise` — issues + fixes only, no learning resources
+     - `learn` — educational: explanations, fixes, and learning resources
    - **Files**: list of Swift files to review.
    - **GitHub base URL**: extract `{github_base}` from the prompt. If not provided, use empty string
 
@@ -68,13 +69,13 @@ Fields:
 - **issues[].problem**: one-sentence description
 - **issues[].code**: the problematic code snippet
 - **issues[].fix**: corrected code snippet
-- **issues[].explanation**: 2-3 sentences (include for tutor mode)
-- **issues[].learn_url**: URL (include if `--include-learning`)
+- **issues[].explanation**: 2-3 sentences (include for `learn` mode)
+- **issues[].learn_url**: URL (include for `learn` mode)
 - **total_issues**: count of issues found
 
 ## Learning Resources
 
-If `--include-learning` is enabled, **call the `swift-concurrency` skill tool** to map each issue to a learning resource URL:
+In `learn` mode, **call the `swift-concurrency` skill tool** to map each issue to a learning resource URL:
 
 - Protecting shared state with actors? → `#execution`
 - Managing async work with TaskGroup? → `#tasks`
@@ -89,5 +90,5 @@ Base URL: `https://fuckingapproachableswiftconcurrency.com/en/`
 
 1. **Call the `swift-concurrency` skill tool** to perform the review. If the skill is not found, report that and exit
 2. For each file, collect issues or mark as clean
-3. If `--include-learning` is enabled, map each issue to a learning resource URL
+3. If mode is `learn`, map each issue to a learning resource URL
 4. Return the JSON output

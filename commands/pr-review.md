@@ -1,6 +1,6 @@
 ---
 description: "Review Swift PR for concurrency issues using the Swift Concurrency skill"
-argument-hint: "[--style=reviewer|tutor] [--include-learning|--no-learning]"
+argument-hint: "[concise|learn]"
 allowed-tools: ["Bash", "Glob", "Grep", "Read", "Task"]
 ---
 
@@ -26,14 +26,8 @@ Run a Swift concurrency review on a pull request using the specialized `review-a
 
    Parse the provided arguments to determine review mode:
 
-   - `--style=reviewer` - Concise, professional code review style (issues + fixes only)
-   - `--style=tutor` - Educational style with explanations and learning resources (DEFAULT)
-   - `--include-learning` - Include learning URLs
-   - `--no-learning` - Exclude learning URLs
-
-   **Defaults:**
-   - Style: `tutor`
-   - Learning: `--include-learning` for tutor mode, `--no-learning` for reviewer mode
+   - `concise` - Professional code review: issues + fixes only, no learning resources
+   - `learn` - Educational review: explanations, fixes, and learning resources **(DEFAULT)**
 
 3. **Determine Review Scope**
 
@@ -59,8 +53,7 @@ Run a Swift concurrency review on a pull request using the specialized `review-a
    ```
    Task tool with subagent_type: swift-concurrency-reviewer:review-agent
    Prompt: Review the following Swift files for concurrency issues.
-           Style: [reviewer|tutor]
-           Include learning resources: [true|false]
+           Mode: [concise|learn]
            GitHub base URL: [github_base]
            Files: [list of changed Swift files]
    ```
@@ -87,7 +80,7 @@ Run a Swift concurrency review on a pull request using the specialized `review-a
    - [list of files]
    ```
 
-   ### Reviewer Mode (--style=reviewer):
+   ### Concise Mode (`concise`):
    ````markdown
    ## Swift Concurrency Issues Found: N
 
@@ -105,7 +98,7 @@ Run a Swift concurrency review on a pull request using the specialized `review-a
    [repeat for each issue]
    ````
 
-   ### Tutor Mode (--style=tutor):
+   ### Learn Mode (`learn`):
    ````markdown
    ## Swift Concurrency Review
 

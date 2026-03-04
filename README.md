@@ -1,6 +1,6 @@
 # Swift Concurrency Reviewer
 
-A Claude Code plugin for reviewing Swift PRs for concurrency issues. Supports two output modes: **tutor** (educational with explanations) and **reviewer** (concise issues + fixes).
+A Claude Code plugin for reviewing Swift PRs for concurrency issues. Supports two output modes: **learn** (educational with explanations and learning resources) and **concise** (issues + fixes only).
 
 ## Prerequisites
 
@@ -50,32 +50,22 @@ claude --plugin-dir /path/to/swift-concurrency-reviewer
 /swift-concurrency-reviewer:pr-review
 ```
 
-This runs in **tutor mode** with learning resources enabled (default).
+This runs in **learn** mode by default — educational explanations with learning resources.
 
-### Reviewer Mode
+### Concise Mode
 
-Concise, professional output with issues and fixes only:
+Issues and fixes only:
 
 ```
-/swift-concurrency-reviewer:pr-review --style=reviewer
+/swift-concurrency-reviewer:pr-review concise
 ```
 
-### Tutor Mode
+### Learn Mode
 
 Educational explanations with learning resources:
 
 ```
-/swift-concurrency-reviewer:pr-review --style=tutor
-```
-
-### Control Learning Resources
-
-```
-# Tutor mode without learning links
-/swift-concurrency-reviewer:pr-review --style=tutor --no-learning
-
-# Reviewer mode with learning links
-/swift-concurrency-reviewer:pr-review --style=reviewer --include-learning
+/swift-concurrency-reviewer:pr-review learn
 ```
 
 ## How It Works
@@ -89,8 +79,8 @@ The agent never analyzes concurrency on its own — it delegates everything to t
 ## Tips
 
 - **Run before merging**: Catch concurrency issues before they land in main
-- **Use tutor mode**: When learning Swift concurrency or onboarding team members
-- **Use reviewer mode**: For quick PR checks during active development
+- **Use learn mode**: When learning Swift concurrency or onboarding team members
+- **Use concise mode**: For quick PR checks during active development
 - **Check prerequisites**: Ensure the `swift-concurrency` skill is installed
 
 ## Credits
