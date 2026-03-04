@@ -6,14 +6,14 @@
     "email": "pavliuk.aleksandr@gmail.com"
   },
   "metadata": {
-    "description": "Swift concurrency code review plugin with tutor and reviewer modes"
+    "description": "Swift concurrency code review plugin with learn and concise modes"
   },
   "plugins": [
     {
       "name": "swift-concurrency-reviewer",
       "source": "./",
-      "description": "Review Swift code for concurrency issues. Supports tutor and reviewer output modes.",
-      "version": "1.5.0",
+      "description": "Review Swift code for concurrency issues. Supports learn and concise output modes.",
+      "version": "1.6.0",
       "author": {
         "name": "pavliuko",
         "email": "pavliuk.aleksandr@gmail.com"
