@@ -36,7 +36,6 @@ Skill tool: swift-concurrency
      - `concise` — issues + fixes only, no learning resources
      - `learn` — educational: explanations, fixes, and learning resources
    - **Files**: list of Swift files to review.
-   - **GitHub base URL**: extract `{github_base}` from the prompt. If not provided, use empty string
 
 ## Output
 

@@ -54,7 +54,6 @@ Run a Swift concurrency review on a pull request using the specialized `review-a
    Task tool with subagent_type: swift-concurrency-reviewer:review-agent
    Prompt: Review the following Swift files for concurrency issues.
            Mode: [concise|learn]
-           GitHub base URL: [github_base]
            Files: [list of changed Swift files]
    ```
 
