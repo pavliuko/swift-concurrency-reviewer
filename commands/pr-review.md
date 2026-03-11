@@ -44,7 +44,7 @@ Run a Swift concurrency review on a pull request using the specialized `review-a
    - Use the PR's head branch from step 3
    - Parse owner/repo from the remote URL
    - Construct: `https://github.com/{owner}/{repo}/blob/{head_branch}/`
-   - Store as `github_base` for passing to the agent
+   - Store as `github_base`
 
 5. **Launch Review Agent**
 

@@ -13,7 +13,7 @@
       "name": "swift-concurrency-reviewer",
       "source": "./",
       "description": "Review Swift code for concurrency issues. Supports learn and concise output modes.",
-      "version": "1.6.1",
+      "version": "1.6.2",
       "author": {
         "name": "pavliuko",
         "email": "pavliuk.aleksandr@gmail.com"
