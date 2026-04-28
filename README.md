@@ -1,5 +1,18 @@
 # Swift Concurrency Reviewer
 
+> [!WARNING]
+> **This repository is deprecated.**
+>
+> The plugin has moved to the [pavliuko/claude-plugins](https://github.com/pavliuko/claude-plugins) marketplace and will no longer receive updates here.
+>
+> **Migrate by reinstalling from the new marketplace:**
+>
+> ```
+> /plugin marketplace remove swift-concurrency-reviewer
+> /plugin marketplace add pavliuko/claude-plugins
+> /plugin install swift-concurrency-reviewer@pavliuko
+> ```
+
 A Claude Code plugin for reviewing Swift PRs for concurrency issues. Supports two output modes: **learn** (educational with explanations and learning resources) and **concise** (issues + fixes only).
 
 ## Prerequisites
